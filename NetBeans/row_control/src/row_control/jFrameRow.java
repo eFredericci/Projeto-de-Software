@@ -42,6 +42,7 @@ public class jFrameRow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Acesso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)))); // NOI18N
 
@@ -146,7 +147,7 @@ public class jFrameRow extends javax.swing.JFrame {
      } else { jLabel3.setVisible(false); } //verifica o campo usuario
      
      if (new String (jPasswordField1.getPassword()).equals("Senha"))
-          jLabel3.setVisible(true);
+          jLabel3.setVisible(false);
      else {  jLabel3.setVisible(true); }
     }//GEN-LAST:event_jButton1ActionPerformed
 
