@@ -7,7 +7,11 @@ package row_control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,12 +19,15 @@ import javax.swing.Timer;
  */
 public class jFrameRow extends javax.swing.JFrame {
 
+    private Object JOptionPane;
+
     /**
      * Creates new form jFrameRow
      */
     public jFrameRow() {
         initComponents();
         jLabel3.setVisible(false);
+        jLabel4.setVisible(false);
     }
 
     /**
@@ -40,11 +47,12 @@ public class jFrameRow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Acesso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Acesso", 0, 0, new java.awt.Font("Tahoma", 1, 12)))); // NOI18N
 
         jLabel1.setText("Usuario:");
 
@@ -67,6 +75,8 @@ public class jFrameRow extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Credenciais inválidas!");
+
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,6 +101,8 @@ public class jFrameRow extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(74, 74, 74))
         );
@@ -111,7 +123,9 @@ public class jFrameRow extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -140,15 +154,41 @@ public class jFrameRow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     // Tarefa do botão acessar
-     // Verificar se os campos estão vazios
-     if (jTextField1.getText().isEmpty()) { jLabel3.setVisible(true);
-            new Timer( 2500, cred_invalidas ).start();
-     } else { jLabel3.setVisible(false); } //verifica o campo usuario
-     
-     if (new String (jPasswordField1.getPassword()).equals("Senha"))
-          jLabel3.setVisible(false);
-     else {  jLabel3.setVisible(true); }
+     if(jTextField1.getText().equals("") || jPasswordField1.getPassword().equals("")){
+         jLabel3.setVisible(true);
+        }else{
+
+            Conexao con = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conexao = DriverManager.getConnection("jdbc:mysql://10.20.194.170:3306/oi","usuario1","");
+                Statement stm = con.createStatement();
+                String SQL = "Select * from usuarios where login = '"+ jTextField1.getText()+"';";
+                ResultSet rs = stm.executeQuery(SQL);
+
+                while(rs.next()) {
+                    String loginn = rs.getString("login");
+                    String senhaa = rs.getString("senha");
+                    String nomee = rs.getString("nome");
+                    String permissao = rs.getString("Permissao");
+
+                    if(jTextField1.getText().equals(loginn) && jPasswordField1.getPassword().equals(senhaa)){
+                        jLabel4.setText("Seja bem vindo: " + nomee);
+                    }else{
+                       jLabel4.setText("Login ou Senha inválidos.");
+                        jPasswordField1.setText("");
+                    }
+                }
+            }catch(SQLException e){ //vejamos que erro foi gerado e quem o gerou
+                //vejamos que erro foi gerado e quem o gerou
+                jLabel4.setText("Erro na conexão, com o banco de dados!");
+            }catch (ClassNotFoundException e) {
+            }finally {
+                con.close(); //System.out.println("Houve erro no fechamento da conexão");
+            } // fim do bloco try-catch-finally
+        }//else do login e senha vazios
+        jTextField1.setText("");
+        jPasswordField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -196,6 +236,7 @@ public class jFrameRow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
