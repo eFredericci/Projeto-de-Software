@@ -8,10 +8,12 @@ package row_control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import row_control.jClassConexao;
 
 /**
  *
@@ -20,14 +22,14 @@ import java.sql.Statement;
 public class jFrameRow extends javax.swing.JFrame {
 
     private Object JOptionPane;
-
+    private Object stmt;
+    private String sql;
     /**
      * Creates new form jFrameRow
      */
     public jFrameRow() {
         initComponents();
         jLabel3.setVisible(false);
-        jLabel4.setVisible(false);
     }
 
     /**
@@ -47,7 +49,6 @@ public class jFrameRow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -76,8 +77,6 @@ public class jFrameRow extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Credenciais inválidas!");
 
-        jLabel4.setText("jLabel4");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,8 +100,6 @@ public class jFrameRow extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(74, 74, 74))
         );
@@ -123,9 +120,7 @@ public class jFrameRow extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -154,41 +149,55 @@ public class jFrameRow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     if(jTextField1.getText().equals("") || jPasswordField1.getPassword().equals("")){
-         jLabel3.setVisible(true);
+     if(jTextField1.getText().equals("") || jPasswordField1.getText().equals("")){
+            jLabel3.setText("Login ou Senha inválido.");
+            jLabel3.setVisible(true);
         }else{
-
-            Conexao con = null;
+         String driverName = "net.sourceforge.jtds.jdbc.Driver";                        
+         try {
+             Class.forName(driverName);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(jFrameRow.class.getName()).log(Level.SEVERE, null, ex);
+                      
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conexao = DriverManager.getConnection("jdbc:mysql://10.20.194.170:3306/oi","usuario1","");
+                Connection jClassConexao = null;
+                Connection con = jClassConexao;
                 Statement stm = con.createStatement();
-                String SQL = "Select * from usuarios where login = '"+ jTextField1.getText()+"';";
+                String SQL = "Select * from usuario where usuario = '"+ jTextField1.getText()+"';";
                 ResultSet rs = stm.executeQuery(SQL);
 
                 while(rs.next()) {
-                    String loginn = rs.getString("login");
+                    String loginn = rs.getString("usuario");
                     String senhaa = rs.getString("senha");
                     String nomee = rs.getString("nome");
-                    String permissao = rs.getString("Permissao");
 
                     if(jTextField1.getText().equals(loginn) && jPasswordField1.getPassword().equals(senhaa)){
-                        jLabel4.setText("Seja bem vindo: " + nomee);
+                        jLabel3.setText("Seja bem vindo: " + nomee);
+                        jLabel3.setVisible(true);
                     }else{
-                       jLabel4.setText("Login ou Senha inválidos.");
+                        jLabel3.setText("Login ou Senha inválidos.");
+                        jLabel3.setVisible(true);
                         jPasswordField1.setText("");
                     }
                 }
             }catch(SQLException e){ //vejamos que erro foi gerado e quem o gerou
                 //vejamos que erro foi gerado e quem o gerou
-                jLabel4.setText("Erro na conexão, com o banco de dados!");
-            }catch (ClassNotFoundException e) {
-            }finally {
-                con.close(); //System.out.println("Houve erro no fechamento da conexão");
+                jLabel3.setText("Erro na conexão, com o banco de dados!");
+                jLabel3.setVisible(true);
+            }
+            finally {
+                try{
+                    con.close();
+                }catch(SQLException onConClose){
+                    //System.out.println("Houve erro no fechamento da conexão");
+                    jLabel3.setText("Erro na conexão, com o banco de dados!");
+                    jLabel3.setVisible(true);
+                }
             } // fim do bloco try-catch-finally
         }//else do login e senha vazios
-        jTextField1.setText("");
-        jPasswordField1.setText("");
+     }
+     jTextField1.setText("");
+     jPasswordField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -223,10 +232,8 @@ public class jFrameRow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new jFrameRow().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new jFrameRow().setVisible(true);
         });
     }
 
@@ -236,7 +243,6 @@ public class jFrameRow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
