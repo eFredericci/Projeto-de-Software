@@ -149,30 +149,22 @@ public class jFrameRow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     if(jTextField1.getText().equals("") || jPasswordField1.getText().equals("")){
+     if(jTextField1.getText().equals("") || jPasswordField1.getPassword().equals("")){
             jLabel3.setText("Login ou Senha inválido.");
             jLabel3.setVisible(true);
         }else{
-         String driverName = "net.sourceforge.jtds.jdbc.Driver";                        
-         try {
-             Class.forName(driverName);
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(jFrameRow.class.getName()).log(Level.SEVERE, null, ex);
-                      
             try {
-                Connection jClassConexao = null;
-                Connection con = jClassConexao;
+                Connection con = jClassConexao.getConnection();
                 Statement stm = con.createStatement();
-                String SQL = "Select * from usuario where usuario = '"+ jTextField1.getText()+"';";
+                String SQL = "Select * from usuario where codigo = '"+ jTextField1.getText()+"';";
                 ResultSet rs = stm.executeQuery(SQL);
 
                 while(rs.next()) {
-                    String loginn = rs.getString("usuario");
+                    String loginn = rs.getString("codigo");
                     String senhaa = rs.getString("senha");
-                    String nomee = rs.getString("nome");
 
                     if(jTextField1.getText().equals(loginn) && jPasswordField1.getPassword().equals(senhaa)){
-                        jLabel3.setText("Seja bem vindo: " + nomee);
+                        jLabel3.setText("Seja bem vindo: " + loginn);
                         jLabel3.setVisible(true);
                     }else{
                         jLabel3.setText("Login ou Senha inválidos.");
@@ -185,16 +177,6 @@ public class jFrameRow extends javax.swing.JFrame {
                 jLabel3.setText("Erro na conexão, com o banco de dados!");
                 jLabel3.setVisible(true);
             }
-            finally {
-                try{
-                    con.close();
-                }catch(SQLException onConClose){
-                    //System.out.println("Houve erro no fechamento da conexão");
-                    jLabel3.setText("Erro na conexão, com o banco de dados!");
-                    jLabel3.setVisible(true);
-                }
-            } // fim do bloco try-catch-finally
-        }//else do login e senha vazios
      }
      jTextField1.setText("");
      jPasswordField1.setText("");
