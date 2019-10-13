@@ -18,7 +18,7 @@ public class rowDAO {
         boolean check = false;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE login = ? and senha = ?");
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE codigo = ? and senha = ?");
             stmt.setString(1, login);
             stmt.setString(2, senha);
             
