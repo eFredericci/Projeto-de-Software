@@ -7,12 +7,12 @@ import model.row.rowUsuario;
 
 public class rowStatic {
   
-  private List<rowUsuario> nomes = new LinkedList<rowUsuario>();
+  private final List<rowUsuario> nomes = new LinkedList<>();
     private Object jLabelFila1;
     public static int contador = 0;
 
-  public void insere(rowUsuario objeto) {
-    this.nomes.add(objeto);
+  public void insere(rowUsuario nome) {
+    this.nomes.add(nome);
     contador ++;
   }
 

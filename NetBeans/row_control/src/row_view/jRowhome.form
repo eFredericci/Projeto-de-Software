@@ -128,7 +128,9 @@
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="82" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -186,6 +188,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel10" max="32767" attributes="0"/>
@@ -334,6 +337,11 @@
                 <Property name="text" type="java.lang.String" value=" RowControl v0.0"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Erro!"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanelMasc">
@@ -355,8 +363,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="jPanel16" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jBanheiro1" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jBanheiro2" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
@@ -366,16 +374,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBanheiro1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBanheiro2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="jBanheiro1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="ff" red="33" type="rgb"/>
@@ -411,10 +419,12 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelFila1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jRadioButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -433,7 +443,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelFila1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Integer.toString(contador)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRadioButton1">
@@ -445,7 +457,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel16">
+            <Container class="javax.swing.JPanel" name="jBanheiro2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="ff" red="33" type="rgb"/>
@@ -467,7 +479,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel22" min="-2" pref="36" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel23" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila2" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -481,10 +493,12 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jRadioButton2" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -501,7 +515,7 @@
                     <Property name="text" type="java.lang.String" value="Fila:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel23">
+                <Component class="javax.swing.JLabel" name="jLabelFila2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
@@ -536,8 +550,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel17" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="jPanel18" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jBanheiro3" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="jBanheiro4" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -547,16 +561,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBanheiro3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBanheiro4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel17">
+            <Container class="javax.swing.JPanel" name="jBanheiro3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="ff" red="33" type="rgb"/>
@@ -578,7 +592,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel25" min="-2" pref="36" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel26" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila3" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -592,10 +606,12 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jRadioButton3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -612,7 +628,7 @@
                     <Property name="text" type="java.lang.String" value="Fila:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel26">
+                <Component class="javax.swing.JLabel" name="jLabelFila3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
@@ -626,7 +642,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel18">
+            <Container class="javax.swing.JPanel" name="jBanheiro4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="ff" red="33" type="rgb"/>
@@ -648,7 +664,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel28" min="-2" pref="36" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel29" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila4" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -662,10 +678,12 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jRadioButton4" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFila4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -682,7 +700,7 @@
                     <Property name="text" type="java.lang.String" value="Fila:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel29">
+                <Component class="javax.swing.JLabel" name="jLabelFila4">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
