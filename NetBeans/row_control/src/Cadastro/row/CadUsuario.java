@@ -11,7 +11,7 @@ package Cadastro.row;
  */
 public class CadUsuario {
     Long id;
-    String nome;
+    String Codigo;
     String Senha;
     String Enabled;
     String Prioridade;
@@ -34,11 +34,11 @@ public class CadUsuario {
     public void setId(Long id) {
         this.id = id;
     } 
-    public String getNome() { 
-        return nome;
+    public String getCodigo() { 
+        return Codigo;
     } 
-    public void setNome(String nome) { 
-        this.nome = nome;
+    public void setCodigo(String Codigo) { 
+        this.Codigo = Codigo;
     } 
     public String getPrioridade() { 
         return Prioridade;
