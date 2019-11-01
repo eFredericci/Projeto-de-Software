@@ -1,4 +1,4 @@
-package row_control;
+package Cadastro.row;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -171,9 +171,6 @@ public class frmCadastroUsuario extends javax.swing.JFrame {
         );
 
         label1.getAccessibleContext().setAccessibleName("Código do Usuário");
-        label2.getAccessibleContext().setAccessibleName("Usuário");
-        label3.getAccessibleContext().setAccessibleName("Senha");
-        label4.getAccessibleContext().setAccessibleName("Permissão");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
