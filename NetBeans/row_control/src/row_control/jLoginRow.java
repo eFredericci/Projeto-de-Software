@@ -5,6 +5,7 @@
  */
 package row_control;
 
+import Cadastro.row.frmCadUsuario;
 import model.row.rowDAO;
 import row_view.jRowhome;
 
@@ -139,10 +140,16 @@ public class jLoginRow extends javax.swing.JFrame {
         
        rowDAO dao = new rowDAO();
        
-       if (dao.checkLogin(jLogin.getText(), jPasswordField1.getText())) {
+       if (dao.checkLogin(jLogin.getText(), jPasswordField1.getText(), "1")) {
         new jRowhome().setVisible(true);
         this.dispose();
-    } else {
+    } 
+       else if (dao.checkLogin(jLogin.getText(), jPasswordField1.getText(), "2")) {
+          new jRowhome().setVisible(true);
+          new frmCadUsuario().setVisible(true);
+        this.dispose();  
+        }
+       else {
            jErro.setText("Usuario incorreto!");
        }
        

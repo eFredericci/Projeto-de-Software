@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class rowDAO {
     
-    public boolean checkLogin(String login, String senha) {
+    public boolean checkLogin(String login, String senha, String prioridade) {
         
         Connection con = jClassConexao.getConnection();
         PreparedStatement stmt = null;
@@ -18,9 +18,10 @@ public class rowDAO {
         boolean check = false;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE codigo = ? and senha = ?");
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE codigo = ? and senha = ? and prioridade = ?");
             stmt.setString(1, login);
             stmt.setString(2, senha);
+            stmt.setString(3, prioridade);
             
             rs = stmt.executeQuery();
             
